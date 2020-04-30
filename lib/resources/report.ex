@@ -9,7 +9,7 @@ defmodule Onfido.Resources.Report do
         Onfido.Resources.Report.list("<check-id>")
   """
   def list(check_id) do
-    HttpDriver.request(:get, "/checks/#{check_id}/reports")
+    HttpDriver.request(:get, "/reports?check_id=#{check_id}")
   end
 
   @doc """
@@ -17,10 +17,10 @@ defmodule Onfido.Resources.Report do
 
   ## Example
 
-        Onfido.Resources.Report.get("<check-id>", "<report-id>")
+        Onfido.Resources.Report.get("<report-id>")
   """
-  def get(check_id, report_id) do
-    HttpDriver.request(:get, "/checks/#{check_id}/reports/#{report_id}")
+  def get(report_id) do
+    HttpDriver.request(:get, "/reports/#{report_id}")
   end
 
   @doc """
@@ -28,10 +28,10 @@ defmodule Onfido.Resources.Report do
 
   ## Example
 
-        Onfido.Resources.Report.resume("<check-id>", "<report-id>")
+        Onfido.Resources.Report.resume("<report-id>")
   """
-  def resume(check_id, report_id) do
-    HttpDriver.request(:post, "/checks/#{check_id}/reports/#{report_id}/resume")
+  def resume(report_id) do
+    HttpDriver.request(:post, "/reports/#{report_id}/resume")
   end
 
   @doc """
@@ -39,10 +39,9 @@ defmodule Onfido.Resources.Report do
 
   ## Example
 
-        Onfido.Resources.Report.cancel("<check-id>", "<report-id>")
+        Onfido.Resources.Report.cancel("<report-id>")
   """
-  def cancel(check_id, report_id) do
-    HttpDriver.request(:post, "/checks/#{check_id}/reports/#{report_id}/cancel")
+  def cancel(report_id) do
+    HttpDriver.request(:post, "/reports/#{report_id}/cancel")
   end
 end
-

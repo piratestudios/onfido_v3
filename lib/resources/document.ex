@@ -8,8 +8,8 @@ defmodule Onfido.Resources.Document do
 
         Onfido.Resources.Document.list("<applicant-id>")
   """
-  def list(applicant_id, document_id) do
-    HttpDriver.request(:get, "/applicants/#{applicant_id}/documents")
+  def list(applicant_id) do
+    HttpDriver.request(:get, "/documents?applicant_id=#{applicant_id}")
   end
 
   @doc """
@@ -20,7 +20,7 @@ defmodule Onfido.Resources.Document do
         Onfido.Resources.Document.get("<applicant-id>", "<document-id>")
   """
   def get(applicant_id, document_id) do
-    HttpDriver.request(:get, "/applicants/#{applicant_id}/documents/#{document_id}")
+    HttpDriver.request(:get, "/documents/#{document_id}", %{applicant_id: applicant_id})
   end
 
   @doc """
@@ -31,24 +31,23 @@ defmodule Onfido.Resources.Document do
         Onfido.Resources.Document.download("<applicant-id>", "<document-id>")
   """
   def download(applicant_id, document_id) do
-    HttpDriver.request(:get, "/applicants/#{applicant_id}/documents/#{document_id}/download")
+    HttpDriver.request(:get, "/documents/#{document_id}/download", %{applicant_id: applicant_id})
   end
-
 
   @doc """
   Upload document for a given applicant.
 
   ## Example
 
-        Onfido.Resources.Document.update("<applicant-id>, %{
+        Onfido.Resources.Document.update(%{
+          applicant_id: "<applicant_id>",
           file: "...",
           type: "passport",
           side: "front",
           issuing_country: "GBP"
         })
   """
-  def upload(applicant_id, params) do
-    HttpDriver.request(:post, "/applicants/#{applicant_id}/documents", params)
+  def upload(params) do
+    HttpDriver.request(:post, "/documents", params)
   end
 end
-
