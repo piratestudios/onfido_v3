@@ -3,10 +3,10 @@ defmodule Onfido.MixProject do
 
   def project do
     [
-      app: :onfido,
-      description: "Elixir wrapper for the Onfido API",
+      app: :onfido_v3,
+      description: "Elixir wrapper for v3 of the Onfido API",
       package: package(),
-      version: "0.2.0",
+      version: "0.1.0",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -32,9 +32,10 @@ defmodule Onfido.MixProject do
 
   defp package do
     [
-      maintainers: ["overture8"],
+      name: "onfido_v3",
+      maintainers: ["becky-pirate"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/PiggyPot/onfido"}
+      links: %{"GitHub" => "https://github.com/becky-pirate/onfido"}
     ]
   end
 end

@@ -1,6 +1,7 @@
 # Onfido
 
-Elixir wrapper for the [Onfido](https://onfido.com) API
+Elixir wrapper of the [Onfido](https://onfido.com) API.
+Fork of https://github.com/PiggyPot/onfido updated for v3.
 
 ## Installation
 
@@ -15,8 +16,8 @@ end
 2. Add configuration to your app:
 
 ```elixir
-config :onfido,
-  api_base: "https://api.onfido.com/v2",
+config :onfido_v3,
+  api_base: "https://api.onfido.com/v3",
   api_token: "<your-api-token>"
 ```
 
