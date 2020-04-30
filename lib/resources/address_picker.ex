@@ -12,4 +12,3 @@ defmodule Onfido.Resources.AddressPicker do
     HttpDriver.request(:get, "/addresses/pick", params)
   end
 end
-

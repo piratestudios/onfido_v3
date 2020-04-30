@@ -15,4 +15,3 @@ defmodule Onfido.Resources.SdkToken do
     HttpDriver.request(:post, "/sdk_token", params)
   end
 end
-

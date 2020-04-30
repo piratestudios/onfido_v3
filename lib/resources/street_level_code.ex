@@ -14,4 +14,3 @@ defmodule Onfido.Resources.StreetLevelCode do
     HttpDriver.request(:post, "/slc", params)
   end
 end
-
