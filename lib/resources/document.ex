@@ -17,10 +17,10 @@ defmodule Onfido.Resources.Document do
 
   ## Example
 
-        Onfido.Resources.Document.get("<applicant-id>", "<document-id>")
+        Onfido.Resources.Document.get("<document-id>")
   """
-  def get(applicant_id, document_id) do
-    HttpDriver.request(:get, "/documents/#{document_id}", %{applicant_id: applicant_id})
+  def get(document_id) do
+    HttpDriver.request(:get, "/documents/#{document_id}")
   end
 
   @doc """
