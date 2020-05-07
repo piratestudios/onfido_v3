@@ -39,7 +39,7 @@ defmodule Onfido.Resources.Document do
 
   ## Example
 
-        Onfido.Resources.Document.update(%{
+        Onfido.Resources.Document.upload(%{
           applicant_id: "<applicant_id>",
           file: "...",
           type: "passport",

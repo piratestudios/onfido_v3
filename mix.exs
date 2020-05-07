@@ -6,7 +6,7 @@ defmodule Onfido.MixProject do
       app: :onfido_v3,
       description: "Elixir wrapper for v3 of the Onfido API",
       package: package(),
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps()
