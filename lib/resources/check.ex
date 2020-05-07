@@ -17,10 +17,10 @@ defmodule Onfido.Resources.Check do
 
   ## Example
 
-        Onfido.Resources.Check.get(%{applicant_id: "<applicant_id>")
+        Onfido.Resources.Check.get("<check_id>")
   """
-  def get(applicant_id, check_id) do
-    HttpDriver.request(:get, "/checks/#{check_id}", %{applicant_id: applicant_id})
+  def get(check_id) do
+    HttpDriver.request(:get, "/checks/#{check_id}")
   end
 
   @doc """
@@ -45,13 +45,13 @@ defmodule Onfido.Resources.Check do
 
   ## Example
 
-        Onfido.Resources.Check.resume("<applicant-id>", "<check-id>")
+        Onfido.Resources.Check.resume("<check-id>")
   """
-  def resume(applicant_id, check_id, params \\ %{}) do
+  def resume(check_id, params \\ %{}) do
     HttpDriver.request(
       :post,
       "/checks/#{check_id}/resume",
-      Map.merge(params, %{applicant_id: applicant_id})
+      Map.merge(params)
     )
   end
 end
