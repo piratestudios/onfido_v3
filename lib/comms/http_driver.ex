@@ -7,6 +7,7 @@ defmodule Onfido.Comms.HttpDriver do
   end
 
   def request(method, path, params \\ %{})
+
   def request(:get, path, params) do
     url_params = params |> URI.encode_query()
 
