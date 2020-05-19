@@ -51,7 +51,7 @@ defmodule Onfido.Resources.Check do
     HttpDriver.request(
       :post,
       "/checks/#{check_id}/resume",
-      Map.merge(params)
+      params
     )
   end
 end
