@@ -24,6 +24,28 @@ defmodule Onfido.Resources.Webhook do
   end
 
   @doc """
+  Edit a webhook
+
+  ## Example
+
+        Onfido.Resources.Webhook.delete("<webhook-id>")
+  """
+  def edit(webhook_id, params) do
+    HttpDriver.request(:put, "/webhooks/#{webhook_id}", params)
+  end
+
+  @doc """
+  Delete a webhook
+
+  ## Example
+
+        Onfido.Resources.Webhook.delete("<webhook-id>")
+  """
+  def delete(webhook_id) do
+    HttpDriver.request(:delete, "/webhooks/#{webhook_id}")
+  end
+
+  @doc """
   Register a webhook
 
   ## Example
