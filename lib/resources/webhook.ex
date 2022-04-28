@@ -77,14 +77,14 @@ defmodule Onfido.Resources.Webhook do
         signature_header =
           get_req_header(conn, "X-SHA2-Signature")
           |> Base.decode64()
-    
+
   ## Example
 
         Onfido.Resources.Webhook.verify_signature(webhook_token, signature_header, raw_event_body)
   """
   def verify_webhook_signature(webhook_token, signature_header, raw_event_body) do
     # Compute the HMAC using the SHA256 algorithm and using your webhook's token as the key.
-    expected_signature = :crypto.hmac(:sha256, webhook_token, raw_event_body)
+    expected_signature = :crypto.mac(:hmac, :sha256, webhook_token, raw_event_body)
 
     # Must be a constant time comparison to prevent timing attacks - Elixir's pattern matching operations are constant time
     case {signature_header, expected_signature} do
