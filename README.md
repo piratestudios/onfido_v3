@@ -8,7 +8,7 @@ Fork of https://github.com/PiggyPot/onfido updated for v3.
 ```elixir
 def deps do
   [
-    {:onfido, "~> 0.2.0"}
+    {:onfido_v3, github: "piratestudios/onfido_v3", tag: "0.1.0"}
   ]
 end
 ```
