@@ -10,8 +10,9 @@ defmodule Onfido.Comms.HttpDriver do
 
   def request(:get, path, params) do
     url_params = params |> URI.encode_query()
+    string = if url_params == "", do: "#{path}", else: "#{path}?#{url_params}"
 
-    "#{path}?#{url_params}"
+    string
     |> api_url()
     |> HTTPoison.get(headers(), options())
     |> decode_json()
