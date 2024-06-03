@@ -46,12 +46,18 @@ defmodule Onfido.Comms.HttpDriver do
     ]
   end
 
-  defp options do
-    [ssl: [
-      {:versions, [:"tlsv1.2"]},
-      {:customize_hostname_check, [match_fun: :public_key.pkix_verify_hostname_match_fun(:https)]}
-    ]]
-  end
+    defp default_ssl_options() do
+      [
+        {:versions, [:"tlsv1.2", :"tlsv1.3"]},
+        {:verify, :verify_peer},
+        {:cacertfile, :certifi.cacertfile()},
+        {:depth, 10},
+        {:customize_hostname_check,
+         [
+           match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
+         ]}
+      ]
+    end
 
   defp decode_json({:ok, resp_map}) do
     case resp_map.body do
