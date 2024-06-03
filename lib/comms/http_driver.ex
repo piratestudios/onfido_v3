@@ -2,7 +2,7 @@ defmodule Onfido.Comms.HttpDriver do
   def request(:delete, path) do
     path
     |> api_url()
-    |> HTTPoison.delete(headers(), options())
+    |> HTTPoison.delete(headers(), default_ssl_options())
     |> decode_json()
   end
 
@@ -14,7 +14,7 @@ defmodule Onfido.Comms.HttpDriver do
 
     string
     |> api_url()
-    |> HTTPoison.get(headers(), options())
+    |> HTTPoison.get(headers(), default_ssl_options())
     |> decode_json()
   end
 
@@ -23,7 +23,7 @@ defmodule Onfido.Comms.HttpDriver do
 
     path
     |> api_url()
-    |> HTTPoison.post(payload, headers(), options())
+    |> HTTPoison.post(payload, headers(), default_ssl_options())
     |> decode_json()
   end
 
@@ -32,7 +32,7 @@ defmodule Onfido.Comms.HttpDriver do
 
     path
     |> api_url()
-    |> HTTPoison.put(payload, headers(), options())
+    |> HTTPoison.put(payload, headers(), default_ssl_options())
     |> decode_json()
   end
 
@@ -46,18 +46,18 @@ defmodule Onfido.Comms.HttpDriver do
     ]
   end
 
-    defp default_ssl_options() do
-      [
-        {:versions, [:"tlsv1.2", :"tlsv1.3"]},
-        {:verify, :verify_peer},
-        {:cacertfile, :certifi.cacertfile()},
-        {:depth, 10},
-        {:customize_hostname_check,
-         [
-           match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
-         ]}
-      ]
-    end
+  defp default_ssl_options() do
+    [
+      {:versions, [:"tlsv1.2", :"tlsv1.3"]},
+      {:verify, :verify_peer},
+      {:cacertfile, :certifi.cacertfile()},
+      {:depth, 10},
+      {:customize_hostname_check,
+        [
+          match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
+        ]}
+    ]
+  end
 
   defp decode_json({:ok, resp_map}) do
     case resp_map.body do
