@@ -9,7 +9,7 @@ defmodule Onfido.Resources.Report do
         Onfido.Resources.Report.list("<check-id>")
   """
   def list(check_id) do
-    HttpDriver.request(:get, "/reports?check_id=#{check_id}")
+    HttpDriver.request(:get, "/reports", %{check_id: check_id})
   end
 
   @doc """
