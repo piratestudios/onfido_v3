@@ -19,7 +19,7 @@ defmodule Onfido.Comms.HttpDriver do
   end
 
   def request(:post, path, params) do
-    {:ok, payload} = Onfido.FormData.create(params, :url_encoded)
+    {:ok, payload} = FormData.create(params, :url_encoded)
 
     path
     |> api_url()
@@ -28,7 +28,7 @@ defmodule Onfido.Comms.HttpDriver do
   end
 
   def request(:put, path, params) do
-    {:ok, payload} = Onfido.FormData.create(params, :url_encoded)
+    {:ok, payload} = FormData.create(params, :url_encoded)
 
     path
     |> api_url()
