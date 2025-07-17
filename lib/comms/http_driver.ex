@@ -19,7 +19,7 @@ defmodule Onfido.Comms.HttpDriver do
   end
 
   def request(:post, path, params) do
-    {:ok, payload} = FormData.create(params, :url_encoded)
+    {:ok, payload} = Onfido.FormData.create(params, :url_encoded)
 
     path
     |> api_url()
@@ -28,7 +28,7 @@ defmodule Onfido.Comms.HttpDriver do
   end
 
   def request(:put, path, params) do
-    {:ok, payload} = FormData.create(params, :url_encoded)
+    {:ok, payload} = Onfido.FormData.create(params, :url_encoded)
 
     path
     |> api_url()
@@ -53,16 +53,16 @@ defmodule Onfido.Comms.HttpDriver do
       {:cacertfile, :certifi.cacertfile()},
       {:depth, 10},
       {:customize_hostname_check,
-        [
-          match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
-        ]}
+       [
+         match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
+       ]}
     ]
   end
 
   defp decode_json({:ok, resp_map}) do
     case resp_map.body do
       "" -> {:ok, "No Body"}
-      body -> Poison.decode(body)
+      body -> JSON.decode(body)
     end
     |> create_response(resp_map)
   end
@@ -70,7 +70,7 @@ defmodule Onfido.Comms.HttpDriver do
   defp decode_json({:error, error}) do
     case error do
       "" -> {:error, "Something went wrong"}
-      e -> Poison.decode(e)
+      e -> JSON.decode(e)
     end
   end
 

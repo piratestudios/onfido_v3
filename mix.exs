@@ -6,8 +6,8 @@ defmodule Onfido.MixProject do
       app: :onfido_v3,
       description: "Elixir wrapper for v3 of the Onfido API",
       package: package(),
-      version: "0.1.4",
-      elixir: "~> 1.16",
+      version: "0.1.5",
+      elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -23,10 +23,8 @@ defmodule Onfido.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, "~> 0.19.0", only: :dev, runtime: false},
       {:httpoison_form_data, "~> 0.1"},
       {:httpoison, "~> 2.0"},
-      {:poison, "~> 3.1"}
     ]
   end
 
